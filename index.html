@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="domenu_vieta"></p>
+</body>
+<script>
+    async function getData (){
+    
+        const requestURL = "https://raw.githubusercontent.com/gagerma/Jason/main/fields.json";
+        const request = new Request(requestURL);
+        const response = await fetch (request);
+        const data = await response.json();
+        console.log(data);
+        for (let i = 0; i<data.length;i++) {
+            kuriamas_elementas(data[i].cardImg, data[i].cardTitle,data[i].cardText,data[i].cardButton)
+        }
+        
+    
+    }
+    getData();
+
+
+    function kuriamas_elementas(imgsrc,title,text,btntext){
+        let divas = document.createElement("div");
+        let paveikslelis = document.createElement("img");
+        paveikslelis.setAttribute("src", imgsrc);
+        paveikslelis.style.width ="60%"
+        let pavadinimas = document.createElement("h2");
+        pavadinimas.textContent = title;
+        let textas = document.createElement("p");
+        textas.textContent = text ;
+        divas.append(paveikslelis,pavadinimas,textas);
+        document.body.appendChild(divas);
+}
+
+
+
+
+
+// kuriamas_elementas("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCQwn4a_TR68qjoCIrzfFtBnUmnd0KvnsG7A&usqp=CAU");
+</script>
+</html>
